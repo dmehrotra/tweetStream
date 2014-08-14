@@ -1,4 +1,21 @@
-
+<style>
+body{height:100vh}
+#map{
+	height:100%;
+	width:100%;
+}
+pre.ui-coordinates {
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  padding:5px 10px;
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  font-size:11px;
+  line-height:18px;
+  border-radius:3px;
+  }
+</style>
 <%=@tweets.length%>
 <div id="map"></div>
 <pre id='coordinates' class='ui-coordinates'></pre>
