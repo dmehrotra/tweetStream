@@ -1,0 +1,33 @@
+
+<%=@tweets.length%>
+<div id="map"></div>
+<pre id='coordinates' class='ui-coordinates'></pre>
+<script>
+	
+	L.mapbox.accessToken = 'pk.eyJ1IjoiZG1laHJvdHJhIiwiYSI6IjBHOWF2TjgifQ.ch657gJq3Lp6fZX1F5e4CA';
+	var map = L.mapbox.map('map', 'dmehrotra.j67j4p7k');
+	var myLayer = L.mapbox.featureLayer().addTo(map);
+	var features = [];
+	<% @tweets.each do |tweet| %>
+		features.push({
+			type:'Feature',
+			geometry:{
+				type:'Point',
+				coordinates:[<%=tweet.long%>, <%=tweet.lat%>]
+			},
+			properties:{
+				title:"<%=tweet.text.tr('
+					','')%>"
+			}
+		});
+	<%end%>
+	myLayer.setGeoJSON({
+	    type: 'FeatureCollection',
+	    features: features
+	});
+	
+		// document.getElementById('coordinates').innerHTML = inBounds.join('\n');
+	
+	map.setView([37, -77], 5);
+	
+</script>
